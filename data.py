@@ -1,65 +1,113 @@
-question_data = [
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Entertainment: Television",
-     "question": "Klingons respect their disabled comrades, and those who are old, injured, and helpless.",
-     "correct_answer": "False",
-     "incorrect_answers": ["True"]
-     },
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Mythology",
-     "question": "The Japanese god Izanagi successfully returned his wife Izanami from the Underworld.",
-     "correct_answer": "False",
-     "incorrect_answers": ["True"]},
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Politics",
-     "question": "George W. Bush lost the popular vote in the 2004 United States presidential election.",
-     "correct_answer": "False",
-     "incorrect_answers": ["True"]},
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Entertainment: Video Games",
-     "question": "In Riot Games &quot;League of Legends&quot; the name of Halloween event is called &quot;The Reckoning"
-                 "&quot;.",
-     "correct_answer": "False",
-     "incorrect_answers": ["True"]},
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Science: Mathematics",
-     "question": "111,111,111 x 111,111,111 = 12,345,678,987,654,321",
-     "correct_answer": "True",
-     "incorrect_answers": ["False"]},
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Sports",
-     "question": "ATP tennis hosted several tournaments on carpet court before being replaced to reduce injuries.",
-     "correct_answer": "True",
-     "incorrect_answers": ["False"]},
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Entertainment: Video Games",
-     "question": "In the game &quot;Until Dawn&quot; Emily is the only playable character who can be killed by another"
-                 " playable character directly.",
-     "correct_answer": "True",
-     "incorrect_answers": ["False"]},
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Geography",
-     "question": "You could walk from Norway to North Korea while only passing through Russia.",
-     "correct_answer": "True",
-     "incorrect_answers": ["False"]},
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "Science &amp; Nature",
-     "question": "The &quot;Gympie Stinger&quot; is the deadliest plant in the world.",
-     "correct_answer": "False",
-     "incorrect_answers": ["True"]},
-    {"type": "boolean",
-     "difficulty": "medium",
-     "category": "General Knowledge",
-     "question": "The French word for &quot;glass&quot; is &quot;glace&quot;.",
-     "correct_answer": "False",
-     "incorrect_answers": ["True"]}
-]
+import requests
+
+parameters = {
+    "amount": "10",
+    "type": "boolean"
+}
+
+response = requests.get("https://opentdb.com/api.php", params=parameters)
+response.raise_for_status()
+question_data = response.json()["results"]
+
+# question_data = [
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "medium",
+#         "question": "The HTML5 standard was published in 2014.",
+#         "correct_answer": "True",
+#         "incorrect_answers": [
+#             "False"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "medium",
+#         "question": "The first computer bug was formed by faulty wires.",
+#         "correct_answer": "False",
+#         "incorrect_answers": [
+#             "True"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "medium",
+#         "question": "FLAC stands for 'Free Lossless Audio Condenser'.",
+#         "correct_answer": "False",
+#         "incorrect_answers": [
+#             "True"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "medium",
+#         "question": "All program codes have to be compiled into an executable file in order to be run. This file can then be executed on any machine.",
+#         "correct_answer": "False",
+#         "incorrect_answers": [
+#             "True"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "easy",
+#         "question": "Linus Torvalds created Linux and Git.",
+#         "correct_answer": "True",
+#         "incorrect_answers": [
+#             "False"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "easy",
+#         "question": "The programming language 'Python' is based off a modified version of 'JavaScript'",
+#         "correct_answer": "False",
+#         "incorrect_answers": [
+#             "True"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "medium",
+#         "question": "AMD created the first consumer 64-bit processor.",
+#         "correct_answer": "True",
+#         "incorrect_answers": [
+#             "False"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "easy",
+#         "question": "'HTML' stands for Hypertext Markup Language.",
+#         "correct_answer": "True",
+#         "incorrect_answers": [
+#             "False"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "easy",
+#         "question": "In most programming languages, the operator ++ is equivalent to the statement '+= 1'.",
+#         "correct_answer": "True",
+#         "incorrect_answers": [
+#             "False"
+#         ]
+#     },
+#     {
+#         "category": "Science: Computers",
+#         "type": "boolean",
+#         "difficulty": "hard",
+#         "question": "The IBM PC used an Intel 8008 microprocessor clocked at 4.77 MHz and 8 kilobytes of memory.",
+#         "correct_answer": "False",
+#         "incorrect_answers": [
+#             "True"
+#         ]
+#     }
+# ]
