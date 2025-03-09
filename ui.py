@@ -22,11 +22,11 @@ class QuizInterface:
         self.question_canvas.grid(column=0, row=1, columnspan=2, pady=50)
 
         true_button_image = PhotoImage(file="./images/true.png")
-        self.true_button = Button(image=true_button_image, highlightthickness=0)
+        self.true_button = Button(image=true_button_image, highlightthickness=0, command=self.submit_true)
         self.true_button.grid(column=0, row=2)
 
         false_button_image = PhotoImage(file="./images/false.png")
-        self.false_button = Button(image=false_button_image, highlightthickness=0)
+        self.false_button = Button(image=false_button_image, highlightthickness=0, command=self.submit_false)
         self.false_button.grid(column=1, row=2)
 
         self.get_next_question()
@@ -34,5 +34,22 @@ class QuizInterface:
         self.window.mainloop()
 
     def get_next_question(self):
+        self.question_canvas.config(background="white")
+        self.score_text.config(text=f"Score: {self.quiz.score}")
         question_text = self.quiz.next_question()
         self.question_canvas.itemconfigure(self.question_canvas_text, text=question_text)
+
+    def submit_true(self):
+        is_right = self.quiz.check_answer("True")
+        self.give_feedback(is_right)
+
+    def submit_false(self):
+        is_right = self.quiz.check_answer("False")
+        self.give_feedback(is_right)
+
+    def give_feedback(self, is_right):
+        if is_right:
+            self.question_canvas.config(background="green")
+        else:
+            self.question_canvas.config(background="red")
+        self.window.after(1000, self.get_next_question)
